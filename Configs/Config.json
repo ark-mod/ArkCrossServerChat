@@ -1,0 +1,8 @@
+{
+    "ServerKey": "server1",
+    "ClusterKey": "cluster1",
+    "ServerTag": "MAPNAME",
+    "NamePattern": "{Name} [{ServerTag}]",
+    "HideServerTagOnLocal": true,
+    "DatabasePath": "C:\\ARK Servers\\ArkCrossServerChat.db"
+}
