@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{6E3CB8BD-966B-4CAA-8CF6-D8DD3499DC35}</ProjectGuid>
     <RootNamespace>ArkCrossServerChat</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -70,8 +70,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>C:\ArkApi\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\ArkApi\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\ArkApi2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\ArkApi2\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -107,6 +107,8 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <PreprocessorDefinitions>_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -114,20 +116,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="ArkCrossServerChat.h" />
-    <ClInclude Include="hdr\sqlite_modern_cpp.h" />
-    <ClInclude Include="hdr\sqlite_modern_cpp\extensions\boost_json_spirit.h" />
-    <ClInclude Include="hdr\sqlite_modern_cpp\extensions\boost_uuid.h" />
-    <ClInclude Include="hdr\sqlite_modern_cpp\extensions\std_time_t.h" />
-    <ClInclude Include="hdr\sqlite_modern_cpp\utility\function_traits.h" />
-    <ClInclude Include="json.hpp" />
-    <ClInclude Include="sqlite3.h" />
-    <ClInclude Include="Tools.h" />
+    <ClInclude Include="DatabaseCleanup.h" />
+    <ClInclude Include="Hooks.h" />
+    <ClInclude Include="MessageHandlers.h" />
+    <ClInclude Include="Plugin.h" />
+    <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ArkCrossServerChat.cpp" />
-    <ClCompile Include="sqlite3.c" />
-    <ClCompile Include="Tools.cpp" />
+    <ClCompile Include="DatabaseCleanup.cpp" />
+    <ClCompile Include="Hooks.cpp" />
+    <ClCompile Include="MessageHandlers.cpp" />
+    <ClCompile Include="Plugin.cpp" />
+    <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
