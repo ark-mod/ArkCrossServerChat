@@ -73,7 +73,7 @@ std::string GetTribeName(AShooterPlayerController* playerController)
 	if (playerState)
 	{
 		auto tribeData = playerState->MyTribeDataField()();
-		tribeName = tribeData.TribeName.ToString();
+		tribeName = tribeData->TribeNameField()().ToString();
 	}
 
 	return tribeName;
