@@ -17,6 +17,9 @@ public:
 	std::wstring mre_cluster_name;
 	std::chrono::time_point<std::chrono::system_clock> NextCleanupTime;
 	long long lastRowId = 0;
+	bool new_message_available;
+	std::mutex new_message_available_mutex;
+	std::chrono::time_point<std::chrono::system_clock> last_test_time;
 
 	static Plugin& Get();
 

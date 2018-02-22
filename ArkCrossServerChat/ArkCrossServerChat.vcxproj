@@ -117,6 +117,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="DatabaseCleanup.h" />
+    <ClInclude Include="DebugTimer.h" />
     <ClInclude Include="Hooks.h" />
     <ClInclude Include="MessageHandlers.h" />
     <ClInclude Include="Plugin.h" />
@@ -125,6 +126,7 @@
   <ItemGroup>
     <ClCompile Include="ArkCrossServerChat.cpp" />
     <ClCompile Include="DatabaseCleanup.cpp" />
+    <ClCompile Include="DebugTimer.cpp" />
     <ClCompile Include="Hooks.cpp" />
     <ClCompile Include="MessageHandlers.cpp" />
     <ClCompile Include="Plugin.cpp" />

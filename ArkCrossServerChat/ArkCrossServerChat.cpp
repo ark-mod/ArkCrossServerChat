@@ -4,6 +4,7 @@
 #include "Plugin.h"
 #include "Hooks.h"
 #include "DatabaseCleanup.h"
+#include "DebugTimer.h"
 #include "MessageHandlers.h"
 
 #pragma comment(lib, "ArkApi.lib")
@@ -159,6 +160,7 @@ void Load()
 	}
 
 	plugin.NextCleanupTime = std::chrono::system_clock::now() + std::chrono::seconds(300); // init with cleanup in 5 min
+	plugin.last_test_time = std::chrono::system_clock::now();
 
 	auto& hooks = ArkApi::GetHooks();
 	auto& commands = ArkApi::GetCommands();
@@ -169,6 +171,8 @@ void Load()
 
 	commands.AddOnChatMessageCallback("ChatMessageCallback", &ChatMessageCallback);
 	commands.AddOnTimerCallback("CleanupTimer", &CleanupTimer);
+	if (plugin.json.value("Debug", false) == true) commands.AddOnTimerCallback("DebugTimer", &DebugTimer);
+	commands.AddOnTickCallback("MessageTimer", &MessageTimer);
 }
 
 void Unload()
@@ -182,6 +186,8 @@ void Unload()
 
 	commands.RemoveOnChatMessageCallback("ChatMessageCallback");
 	commands.RemoveOnTimerCallback("CleanupTimer");
+	if (plugin.json.value("Debug", false) == true) commands.RemoveOnTimerCallback("DebugTimer");
+	commands.RemoveOnTickCallback("MessageTimer");
 
 	SetEvent(plugin.handle_mre_thread);
 

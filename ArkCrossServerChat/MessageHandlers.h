@@ -2,6 +2,7 @@
 #include "Plugin.h"
 
 DWORD WINAPI WaitForNewMessagesThreadProc(LPVOID lpParam);
+void MessageTimer(float delta);
 void OnNewMessagesFromDatabase();
 void HandleMessageFromDatabase(
 	long long id, 
