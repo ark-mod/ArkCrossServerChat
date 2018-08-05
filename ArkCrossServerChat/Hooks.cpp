@@ -13,7 +13,7 @@ bool ChatMessageCallback(AShooterPlayerController* _AShooterPlayerController, FS
 	std::wstring msg;
 	if (_AShooterPlayerController && Message && Mode == EChatSendMode::Type::GlobalChat)
 	{
-		lastChatMessageTime = _AShooterPlayerController->LastChatMessageTimeField()();
+		lastChatMessageTime = _AShooterPlayerController->LastChatMessageTimeField();
 		msg = std::wstring(ArkApi::Tools::ConvertToWideStr(Message->ToString()));
 
 		auto steamId = static_cast<int64>(ArkApi::GetApiUtils().GetSteamIdFromController(_AShooterPlayerController));
@@ -22,7 +22,7 @@ bool ChatMessageCallback(AShooterPlayerController* _AShooterPlayerController, FS
 		auto tribeName = GetTribeName(_AShooterPlayerController);
 
 		auto icon = playerControllerEx->bIsAdminField()()
-			&& !_AShooterPlayerController->bSuppressAdminIconField()()
+			&& !_AShooterPlayerController->bSuppressAdminIconField()
 			? ChatIcon::Admin
 			: ChatIcon::None;
 
@@ -53,7 +53,8 @@ bool ChatMessageCallback(AShooterPlayerController* _AShooterPlayerController, FS
 			Log::GetLog()->error("({} {}) Unexpected DB error {}", __FILE__, __FUNCTION__, e.what());
 		}
 
-		return true;
+		// To prevent duplicate chat messages when other chat-based plugins are in use, return false if we don't intent to modify locally-sent global chat.
+		return !plugin.hideServerTagOnLocal;
 	}
 
 	return false;

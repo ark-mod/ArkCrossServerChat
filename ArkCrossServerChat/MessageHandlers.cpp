@@ -99,6 +99,9 @@ void HandleMessageFromDatabase(
 	auto &plugin = Plugin::Get();
 	auto isLocal = serverKey.compare(plugin.serverKey) == 0;
 
+	// If we get a local, non-rcon chat message and we don't want to modify the server tag, don't let OnChatMessageCallback get in the way of other plugins doing the same chat modifications.
+	if (rcon == 0 && isLocal && plugin.hideServerTagOnLocal) return;
+
 	//send chat message to users
 	if (rcon == 0)
 	{
@@ -109,12 +112,12 @@ void HandleMessageFromDatabase(
 		if (chatIcon == ChatIcon::Admin)
 		{
 			auto engine = Globals::GEngine()();
-			auto primalglobals = engine->GameSingletonField()();
-			auto gamedata = primalglobals->PrimalGameDataOverrideField()();
-			if (!gamedata) gamedata = primalglobals->PrimalGameDataField()();
+			auto primalglobals = engine->GameSingletonField();
+			auto gamedata = primalglobals->PrimalGameDataOverrideField();
+			if (!gamedata) gamedata = primalglobals->PrimalGameDataField();
 
-			auto texture = gamedata->NameTagServerAdminField()();
-			if (texture) iconTexture = gamedata->NameTagServerAdminField()();
+			auto texture = gamedata->NameTagServerAdminField();
+			if (texture) iconTexture = gamedata->NameTagServerAdminField();
 		}
 
 		auto name = FString(FromUTF16(characterName).c_str());
@@ -135,7 +138,7 @@ void HandleMessageFromDatabase(
 			if (player_controller)
 			{
 				auto player_character = player_controller->GetPlayerCharacter();
-				if (player_character) linkedPlayerDataID = player_character->LinkedPlayerDataIDField()();
+				if (player_character) linkedPlayerDataID = player_character->LinkedPlayerDataIDField();
 			}
 		}
 

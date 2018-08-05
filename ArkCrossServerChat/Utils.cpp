@@ -12,7 +12,7 @@ void SendRconChatMessageToAll(std::wstring message)
 
 	FString msg(message.c_str());
 
-	auto playerControllers = world->PlayerControllerListField()();
+	auto playerControllers = world->PlayerControllerListField();
 	for (auto playerController : playerControllers)
 	{
 		auto aShooterPC = static_cast<AShooterPlayerController*>(playerController.Get());
@@ -40,7 +40,7 @@ void SendChatMessageToAll(
 	auto world = ArkApi::GetApiUtils().GetWorld();
 	if (!world) return;
 
-	auto playerControllers = world->PlayerControllerListField()();
+	auto playerControllers = world->PlayerControllerListField();
 	for (auto playerController : playerControllers)
 	{
 		AShooterPlayerController* aShooterPC = static_cast<AShooterPlayerController*>(playerController.Get());
@@ -52,8 +52,8 @@ std::string GetPlayerName(AShooterPlayerController* playerController)
 {
 	std::string playerName;
 
-	auto playerState = playerController->PlayerStateField()();
-	if (playerState) playerName = ToUTF8(*playerState->PlayerNameField()());
+	auto playerState = playerController->PlayerStateField();
+	if (playerState) playerName = ToUTF8(*playerState->PlayerNameField());
 
 	return playerName;
 }
@@ -69,11 +69,11 @@ std::string GetTribeName(AShooterPlayerController* playerController)
 {
 	std::string tribeName;
 
-	auto playerState = reinterpret_cast<AShooterPlayerState*>(playerController->PlayerStateField()());
+	auto playerState = reinterpret_cast<AShooterPlayerState*>(playerController->PlayerStateField());
 	if (playerState)
 	{
-		auto tribeData = playerState->MyTribeDataField()();
-		tribeName = tribeData->TribeNameField()().ToString();
+		auto tribeData = playerState->MyTribeDataField();
+		tribeName = tribeData->TribeNameField().ToString();
 	}
 
 	return tribeName;
