@@ -1,5 +1,9 @@
 # ARK Server API: Cross Server Chat (Plugin)
 
+## Contributions
+
+This plugin needs a new primary maintainer. If anyone wants to volunteer just let me know.
+
 ## Introduction
 
 Adds cross server chat support to ARK Survival Evolved servers using ARK Server API.
