@@ -1,0 +1,6 @@
+[submodule "ARK-Server-API"]
+	path = ARK-Server-API
+	url = https://github.com/Michidu/ARK-Server-API.git
+[submodule "ArkPluginLibrary"]
+	path = ArkPluginLibrary
+	url = https://github.com/Zachar543/ArkPluginLibrary.git

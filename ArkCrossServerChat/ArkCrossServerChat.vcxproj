@@ -70,8 +70,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>C:\ArkApi2\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\ArkApi2\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)ARK-Server-API\version\Core\Public;$(SolutionDir)ArkPluginLibrary;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)ARK-Server-API\out_lib;$(OutDir);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
